@@ -1,0 +1,382 @@
+body {
+	margin: auto;
+	background: #E2E2E2;
+	font-family: 'Lato','Roboto';
+    font-weight: 400;
+    margin-top: 8%;
+}
+/*Home side*/
+.frontpage{
+    display: block;
+    text-align: center;
+
+}
+
+
+.content {
+  height: auto;
+  width: 75%;
+  margin: 0 auto;
+  background-color: #E2E2E2;
+  background-blend-mode: multiply;
+  background-size: cover;
+  align-items: center;
+  justify-items: center;
+}
+
+.frontcontainer{
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+    justify-content: center;
+}
+
+.frontboxes{
+    margin-top: 20px;
+}
+
+.box{
+    max-width: 70%;
+   margin: auto;
+    
+}
+
+
+/*About side*/
+/*Products side*/
+/*Contact side*/
+.contact-title{
+    margin-top: 100px;
+    color: #FF715B;
+    text-transform: uppercase;
+    transition: all 4s ease-in-out;
+
+}
+.contact-title h1,h2{
+    text-align: center;
+    margin: auto;
+}
+form{
+    text-align: center;
+    margin: auto;
+    max-width: 80%;
+}
+ .form-control{
+    width: 75%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid gray;
+    color: #FF715B;
+    font-size: 16px;
+    margin-bottom: 2em;
+
+ }
+
+form input{
+    height: 45px;
+}
+
+form .submit{
+    background: #FFF;
+    border-color: transparent;
+    color: #FF715B;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    height: 50px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+form .submit:hover{
+    background-color: silver;
+    cursor: pointer;
+}
+
+.column {
+    float: left;
+    width: 38%;
+    margin-left: 7%;
+    padding: 8px;
+
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+form ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+/*Shopping Cart side*/
+
+
+
+
+
+/* navigation styles starter her */
+
+header {
+  background-color: #FFF;
+  text-align: center;
+  position: fixed;
+  height: 3em;
+  height: 8%;
+  z-index: 999;
+  width: 100%;
+  top: 0;
+}
+
+
+/* Logo -placeholder til logo*/
+.logo{
+    color: #FF715B;
+    margin: auto;    
+}
+
+/* navbar mobil */
+
+.nav-toggle {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.nav-toggle:focus ~ .nav-toggle-label {
+  outline: 3px solid rgba(lightblue, .75);
+}
+
+.nav-toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle-label span, .nav-toggle-label span::before,.nav-toggle-label span::after {
+  display: block;
+  background: #FF715B;
+  height: 2px;
+  width: 2em;
+  border-radius: 2px;
+  position: relative;
+}
+
+.nav-toggle-label span::before,.nav-toggle-label span::after {
+  content: '';
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  bottom: 7px;
+}
+
+.nav-toggle-label span::after {
+  top: 7px;
+}
+
+/* nav */
+
+nav {
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  left: 0;
+  background:rgba(255, 255, 255, 0.9) ;
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 400ms ease-in-out;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+nav a {
+  color: #FF715B;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+.nav-toggle:checked ~ nav {
+  transform: scale(1,1);
+}
+
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out 250ms;
+}
+
+/* Footer */
+
+.footer-divide{
+	background-color: #fff;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+    width: 100%;
+    z-index: 998;
+	text-align: center;
+	font: normal 16px Lato;
+	padding: 45px 50px;
+	margin-top: 80px;
+}
+
+.footer-divide .footer-left p{
+	color:  #FF715B;
+	font-size: 14px;
+    margin: 0;
+    line-height: 1.8;  
+}
+
+/* Footer links */
+
+.footer-divide p.footer-links{
+	font-size:18px;
+	font-weight: bold;
+	color:  #FF715B;
+	margin: 0 0 10px;
+    padding: 0;
+    line-height: 1.8;    
+}
+
+.footer-divide p.footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+	text-decoration: none;
+    color:  inherit;
+}
+
+.footer-divide .footer-right{
+	float: none;
+	margin-top: 6px;
+    max-width: 180px;
+    margin: auto;
+}
+
+.footer-divide .footer-right a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	background-color:  #fff;
+	border-radius: 2px;
+    text-align: center;
+	font-size: 20px;
+	color: #FF715B;
+	line-height: 35px;
+	margin-left: 3px;
+}
+
+
+/* Media - desktop */
+
+@media screen and (min-width: 800px) {
+    .nav-toggle-label {
+        display: none;
+    }
+
+    header{
+        display: inline-block;
+    }
+    
+    .logo{
+   
+        float: left;
+        margin-left: 10%;
+        text-align: center;
+        margin-top: 0.13em;
+    }
+
+    /* front page i full skjerm*/
+    .box{
+        all: unset;
+        display: inline-block;
+        max-width: 28%;
+        padding: 1em;
+        
+        
+    }
+
+    /* navbar i fullskjerm med transision over menu*/
+    nav{
+        all: unset;
+        float: center;
+        margin: 3% auto;
+        text-align: right;
+        
+    }
+
+    nav li {
+        list-style: none;
+        display: inline-block;
+        margin-top: 0.7em;
+        margin-right: 1%;
+        position: relative;
+        
+    }
+
+    nav ul{
+        margin-left: 3em;
+        margin-bottom: 0;
+    }
+
+    nav a{
+        opacity: 1;   
+    }
+
+    nav a::before{
+        content: '';
+        display: block;
+        height: 5px;
+        background: black;
+        position: absolute;
+        top: -.75em;
+        left: 0;
+        right: 0;
+        transform: scale(0,1);
+        transition: transform ease-in-out 250ms;
+    }
+    nav a:hover::before{
+        transform: scale(1,1)
+    }
+
+	/* footer fullskjerm */
+    .footer-divide .footer-left{
+		text-align: left;
+	}
+	.footer-divide .footer-right{
+        float: right;
+        text-align: right;
+		margin: 0 auto 20px;
+	}
+
+	.footer-divide .footer-left p.footer-links{
+		line-height: 1.8;
+	}
+}
+
