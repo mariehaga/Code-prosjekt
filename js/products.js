@@ -1,41 +1,3 @@
-var products = [
-	{
-		id: 1,
-		name: "A thing",
-		price: 900,
-		img: "strawberry-banana.jpg",
-		category: "smouthie"
-	},
-	{
-		id: 2,
-		name: "Another thing",
-		price: 900,
-		img: "strawberry-banana.jpg",
-		category: "smouthie"
-	},
-	{
-		id: 3,
-		name: "A thing",
-		price: 900,
-		img: "strawberry-banana.jpg",
-		category: "smouthie"
-	},
-	{
-		id: 4,
-		name: "Another thing IIIIIIASSIIIIdsasdad",
-		price: 900,
-		img: "strawberry-banana.jpg",
-		category: "smouthie"
-	},
-	{
-		id: 5,
-		name: "A thing",
-		price: 900,
-		img: "strawberry-banana.jpg",
-		category: "bread"
-	}
-];
-
 var productsInDemand = [];
 
 var productsDiv = document.getElementById("productsDiv");
@@ -78,7 +40,7 @@ displayFilter = function () {
 	}
 }
 
-var categoryArrayInDemand = []
+var categoryArrayInDemand = [];
 
 bindCheckbox = function (checkbox, category) {
 	checkbox.onchange = function () {
@@ -118,7 +80,7 @@ bindCheckbox = function (checkbox, category) {
 }
 
 
-displayFilter()
+displayFilter();
 
 displayProducts = function (products) {
 
@@ -149,8 +111,9 @@ displayProducts = function (products) {
 		var inputField = document.createElement("input");
 		inputField.className = "inputField";
 		inputField.type = "number";
-		inputField.min = 0;
-		inputField.placeholder = 0;
+		inputField.min = 1;
+		inputField.value = 1;
+		inputField.placeholder = 1;
 
 		textElements.appendChild(textField);
 		textElements.appendChild(inputField);
@@ -175,113 +138,16 @@ bindAddToCart = function (button, product, input) {
 		if (input.value > 0) {
 			console.log(input.value);
 
-			//Reset input-value
-			input.value = "";
-			input.placeholder = 0;
+			addToCart(product, input.value);
 
-			//Audun, her skal det legges inn i handlekurven
+			//Reset input-value
+			input.value = 1;
+			input.placeholder = 1;
 		}
 		else {
-			console.log("no value")
+			console.log("no value");
 		}
 	}
 }
 
 displayProducts(products);
-
-var cart = [];
-
-/*
-function loadCart() {
-	// loads cart from stored cookie
-	var cartString = getCookie("cart");
-	console.log("Cart cookie: " + cartString);
-	if (cartString) {
-		cart = JSON.parse(cartString);
-	}
-	renderCart();
-}
-
-function getCookie(key) {
-	// helper: gets cookie with input key
-	var value = "; " + document.cookie;
-	var parts = value.split("; " + key + "=");
-	if (parts.length == 2) {
-		return parts.pop().split(";").shift();;
-	}
-}
-
-function renderCart() {
-	// renders cart from cart variable
-	const cart_container = document.querySelector(".cart");
-	const list = document.createElement("ul");
-	cart_container.innerHTML = "";
-	cart_container.appendChild(list);
-	for (i = 0; i < cart.length; i++) {
-		const li = document.createElement("li");
-		const itemData = getItemData(cart[i].id, products);
-		li.innerText = itemData.name + " (" + cart[i].count + ")";
-		list.appendChild(li);
-	}
-}
-
-function storeCart() {
-	// stores cart to cookie
-	var cartString = JSON.stringify(cart);
-	console.log(cartString);
-	document.cookie = "cart="+btoa(cartString)+";";
-}
-
-function addToCart() {
-	// adds clicked item to cart
-	var item = this;
-	var itemId = parseInt(item.dataset.productId);
-	var existingItem = cart.filter(e => e.id === itemId);
-	if (existingItem.length != 0) {
-		//product exists, increment count
-		existingItem[0].count++;
-	} else {
-		var newItem = {
-			id: itemId,
-			count: 1
-		};
-		cart.push(newItem);
-	}
-	storeCart();
-	renderCart();
-}
-
-function setCartItemCount(itemId) {
-	var item = getItemData(itemId, cart);
-	if (item) {
-		if (count < 1) {
-			
-		}
-	}
-	renderCart();
-}
-
-function getCartItemCount(itemId) {
-	var item = getItemData(itemId, cart);
-	if (item) {
-		return item.count;
-	}
-	return 0;
-}
-
-function getItemData(itemId, target) {
-	var item = target.filter(e => e.id === itemId);
-	if (item.length > 0) {
-		return item[0];
-	}
-	return false;
-}
-
-var cartButtons = document.getElementsByClassName("add-to-cart");
-for(var i = 0; i < cartButtons.length; i++)
-{
-   cartButtons[i].onclick = addToCart;
-}
-
-loadCart();
-*/

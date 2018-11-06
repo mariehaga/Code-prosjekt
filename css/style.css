@@ -389,3 +389,72 @@ nav a:hover {
 	}
 }
 
+/* dialog styles */
+.dialog-backdrop,
+.dialog {
+	visibility: hidden;
+}
+
+.dialog-visible {
+	overflow: hidden;
+}
+
+.dialog-visible .dialog-backdrop,
+.dialog-visible .dialog {
+	visibility: visible;
+}
+
+.dialog-backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999;
+	transition: opacity 0.25s ease, background 0.25s ease;
+	opacity: 0;
+	background: rgba(0,0,0,0.0);
+}
+
+.dialog-visible .dialog-backdrop {
+	opacity: 1;
+	background: rgba(0,0,0,0.5);
+}
+
+.dialog {
+	margin: 0 auto;
+	position: relative;
+	width: 80%;
+	max-width: 800px;
+	box-sizing: border-box;
+	margin-top: 1em;	
+}
+
+.dialog-header .close-dialog-btn {
+	position: absolute;
+	top: 0.5em;
+	right: -0.5em;
+}
+
+.dialog-header h4 {
+	margin: 0;
+}
+
+.dialog-header {
+	background: #DDD;
+	margin: 0;
+	padding: 0.5em;
+	width: 100%;
+}
+
+.dialog-content {
+	padding: 0.5em;
+	width: 100%;
+	background: #FFF;
+}
+
+.dialog-footer {
+	background: #DDD;
+	padding: 0.5em;
+	width: 100%;
+}
