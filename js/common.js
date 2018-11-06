@@ -50,7 +50,8 @@ const dialogTemplateHtml = '' +
 var cart = [];
 
 function getCookie(key) {
-	// helper: gets cookie with input key
+    // helper: gets cookie with input key
+    // source: https://stackoverflow.com/questions/10730362/get-cookie-by-name
 	var value = "; " + document.cookie;
 	var parts = value.split("; " + key + "=");
 	if (parts.length == 2) {
