@@ -3,15 +3,20 @@ body {
 	background: #E2E2E2;
 	font-family: 'Lato','Roboto';
     font-weight: 400;
-    margin-top: 8%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: 100vh;
+    box-sizing: border-box;
+    /* needs to be the same as the height of the header */
+    padding-top: 3em;
 }
+
 /*Home side*/
-.frontpage{
+.frontpage {
     display: block;
     text-align: center;
-
 }
-
 
 .content {
   height: auto;
@@ -22,9 +27,11 @@ body {
   background-size: cover;
   align-items: center;
   justify-items: center;
+  /* set to height of footer */
+  padding-bottom: 157px;
 }
 
-.frontcontainer{
+.frontcontainer {
     width: 80%;
     margin: auto;
     overflow: hidden;
@@ -32,14 +39,13 @@ body {
     justify-content: center;
 }
 
-.frontboxes{
+.frontboxes {
     margin-top: 20px;
 }
 
-.box{
+.box {
     max-width: 70%;
-   margin: auto;
-    
+    margin: auto;
 }
 
 
@@ -51,18 +57,20 @@ body {
     color: #FF715B;
     text-transform: uppercase;
     transition: all 4s ease-in-out;
-
 }
+
 .contact-title h1,h2{
     text-align: center;
     margin: auto;
 }
-form{
+
+form {
     text-align: center;
     margin: auto;
     max-width: 80%;
 }
- .form-control{
+
+ .form-control {
     width: 75%;
     background: transparent;
     border: none;
@@ -71,14 +79,13 @@ form{
     color: #FF715B;
     font-size: 16px;
     margin-bottom: 2em;
-
  }
 
-form input{
+form input {
     height: 45px;
 }
 
-form .submit{
+form .submit {
     background: #FFF;
     border-color: transparent;
     color: #FF715B;
@@ -90,7 +97,7 @@ form .submit{
     text-align: center;
 }
 
-form .submit:hover{
+form .submit:hover {
     background-color: silver;
     cursor: pointer;
 }
@@ -109,16 +116,13 @@ form .submit:hover{
     clear: both;
 }
 
-form ul{
+form ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-
 /*Shopping Cart side*/
-
-
 
 
 
@@ -129,7 +133,6 @@ header {
   text-align: center;
   position: fixed;
   height: 3em;
-  height: 8%;
   z-index: 999;
   width: 100%;
   top: 0;
@@ -137,9 +140,10 @@ header {
 
 
 /* Logo -placeholder til logo*/
-.logo{
+.logo {
     color: #FF715B;
     margin: auto;    
+    margin-top: 0.08em;
 }
 
 /* navbar mobil */
@@ -162,6 +166,7 @@ header {
   height: 100%;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .nav-toggle-label span, .nav-toggle-label span::before,.nav-toggle-label span::after {
@@ -235,7 +240,7 @@ nav a:hover {
 
 /* Footer */
 
-.footer-divide{
+.footer-divide {
 	background-color: #fff;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 	box-sizing: border-box;
@@ -243,12 +248,16 @@ nav a:hover {
     z-index: 998;
 	text-align: center;
 	font: normal 16px Lato;
-	padding: 45px 50px;
-	margin-top: 80px;
+    padding: 25px 50px;
+    height: 157px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
-.footer-divide .footer-left p{
-	color:  #FF715B;
+.footer-divide .footer-left p {
+	color: #FF715B;
 	font-size: 14px;
     margin: 0;
     line-height: 1.8;  
@@ -256,34 +265,34 @@ nav a:hover {
 
 /* Footer links */
 
-.footer-divide p.footer-links{
-	font-size:18px;
+.footer-divide p.footer-links {
+	font-size: 18px;
 	font-weight: bold;
-	color:  #FF715B;
+	color: #FF715B;
 	margin: 0 0 10px;
     padding: 0;
     line-height: 1.8;    
 }
 
-.footer-divide p.footer-links a{
-	display:inline-block;
+.footer-divide p.footer-links a {
+	display: inline-block;
 	line-height: 1.8;
 	text-decoration: none;
-    color:  inherit;
+    color: inherit;
 }
 
-.footer-divide .footer-right{
+.footer-divide .footer-right {
 	float: none;
 	margin-top: 6px;
     max-width: 180px;
     margin: auto;
 }
 
-.footer-divide .footer-right a{
+.footer-divide .footer-right a {
 	display: inline-block;
 	width: 35px;
 	height: 35px;
-	background-color:  #fff;
+	background-color: #fff;
 	border-radius: 2px;
     text-align: center;
 	font-size: 20px;
@@ -296,39 +305,38 @@ nav a:hover {
 /* Media - desktop */
 
 @media screen and (min-width: 800px) {
+    .footer-divide {
+        padding-top: 45px;
+    }
+    
     .nav-toggle-label {
         display: none;
     }
 
-    header{
+    header {
         display: inline-block;
     }
     
-    .logo{
-   
+    .logo {
         float: left;
         margin-left: 10%;
         text-align: center;
-        margin-top: 0.13em;
     }
 
     /* front page i full skjerm*/
-    .box{
+    .box {
         all: unset;
         display: inline-block;
         max-width: 28%;
         padding: 1em;
-        
-        
     }
 
     /* navbar i fullskjerm med transision over menu*/
-    nav{
+    nav {
         all: unset;
         float: center;
         margin: 3% auto;
         text-align: right;
-        
     }
 
     nav li {
@@ -340,16 +348,16 @@ nav a:hover {
         
     }
 
-    nav ul{
+    nav ul {
         margin-left: 3em;
         margin-bottom: 0;
     }
 
-    nav a{
+    nav a {
         opacity: 1;   
     }
 
-    nav a::before{
+    nav a::before {
         content: '';
         display: block;
         height: 5px;
@@ -361,21 +369,22 @@ nav a:hover {
         transform: scale(0,1);
         transition: transform ease-in-out 250ms;
     }
-    nav a:hover::before{
+
+    nav a:hover::before {
         transform: scale(1,1)
     }
 
 	/* footer fullskjerm */
-    .footer-divide .footer-left{
+    .footer-divide .footer-left {
 		text-align: left;
 	}
-	.footer-divide .footer-right{
+	.footer-divide .footer-right {
         float: right;
         text-align: right;
 		margin: 0 auto 20px;
 	}
 
-	.footer-divide .footer-left p.footer-links{
+	.footer-divide .footer-left p.footer-links {
 		line-height: 1.8;
 	}
 }
