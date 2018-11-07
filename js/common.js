@@ -31,7 +31,7 @@ const products = [
 		id: 5,
 		name: "A thing",
 		price: 900,
-		img: "strawberry-banana.jpg",
+		img: "nice-bread.png",
 		category: "bread"
 	}
 ];
