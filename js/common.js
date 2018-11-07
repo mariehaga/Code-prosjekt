@@ -37,17 +37,22 @@ const products = [
 ];
 
 const dialogTemplateHtml = '' +
-    '<div class="dialog-backdrop">' +
-        '<div class="dialog">' +
-            '<div class="dialog-header"><h4 class="dialog-title"></h4><button class="close-dialog-btn">x</button></div>' +
-            '<div class="dialog-content">' +
-                '<p>test</p>' +
-            '</div>' +
-            '<div class="dialog-footer"></div>' +
+    '<div class="dialog">' +
+        '<div class="dialog-header"><h4 class="dialog-title"></h4><button class="close-dialog-btn">x</button></div>' +
+        '<div class="dialog-content">' +
+            '<p>test</p>' +
         '</div>' +
+        '<div class="dialog-footer"></div>' +
     '</div>';
 
 var cart = [];
+
+function storeCart() {
+	// stores cart to cookie
+	var cartString = JSON.stringify(cart);
+	console.log(cartString);
+	document.cookie = "cart="+btoa(cartString)+";";
+}
 
 function getCookie(key) {
     // helper: gets cookie with input key
@@ -66,6 +71,32 @@ function loadCart() {
 	if (cartString) {
 		cart = JSON.parse(cartString);
 	}
+}
+
+function getTotalItemsInCart() {
+    var itemCount = 0;
+    for (var i = 0; i < cart.length; i++) {
+        itemCount += cart[i].count;
+    }
+    return itemCount;
+}
+
+function updateCartCounter() {
+    var cartCounters = document.getElementsByClassName("cart-counter");
+    for (var i = 0; i < cartCounters.length; i++) {
+        cartCounters[i].innerText = getTotalItemsInCart();
+    }
+}
+
+function emptyCart() {
+    cart = [];
+    renderCart();
+    storeCart();
+    updateCartCounter();
+}
+
+function openCheckout() {
+    showDialog("Checkout", '<p>Checkout?</p>');
 }
 
 function getCartItemCount(itemId) {
@@ -98,11 +129,26 @@ function renderCart() {
 			li.innerText = itemData.name + " (" + cart[i].count + ")";
 			list.appendChild(li);
 		}
-	}
+    }
+    
+    var dialog = document.querySelector(".dialog");
+
+    var checkoutButtons = dialog.getElementsByClassName("checkout-btn");
+    var emptyCartButtons = dialog.getElementsByClassName("empty-cart-btn");
+
+    for (var i = 0; i < checkoutButtons.length; i++) {
+        checkoutButtons[i].removeEventListener('click', openCheckout);
+        checkoutButtons[i].addEventListener('click', openCheckout);
+    }
+
+    for (var i = 0; i < emptyCartButtons.length; i++) {
+        checkoutButtons[i].removeEventListener('click', emptyCart);
+        emptyCartButtons[i].addEventListener('click', emptyCart);
+    }
 }
 
 function showCartDialog() {
-	showDialog("Cart", '<div class="cart"></div>', "", renderCart);
+    showDialog("Cart", '<div class="cart"></div>', '<button class="checkout-btn">Checkout</button><button class="empty-cart-btn">Empty cart</button><button class="close-dialog-btn">Close</button>', renderCart);
 }
 
 function hideDialog() {
@@ -110,9 +156,9 @@ function hideDialog() {
 }
 
 function showDialog(title, contentHtml, footerHtml, onRenderCallback) {
-	var body = document.querySelector("body");
-	
-	if (!document.querySelector(".dialog")) {
+    var body = document.querySelector("body");
+
+    if (!document.querySelector(".dialog-backdrop")) {
         var dialogContainer = document.createElement("div");
 		dialogContainer.className = "dialog-backdrop";
 		dialogContainer.innerHTML = dialogTemplateHtml;
@@ -120,6 +166,14 @@ function showDialog(title, contentHtml, footerHtml, onRenderCallback) {
 	}
 	
 	var dialog = document.querySelector(".dialog");
+    
+    if (body.classList.contains("dialog-visible") && !dialog.classList.contains("dialog-hidden")) {
+        /* hide current dialog, open new one after a timeout */
+        dialog.classList.add("dialog-hidden");
+        setTimeout(function(){ showDialog(title, contentHtml, footerHtml, onRenderCallback); }, 500);
+        return;
+    }
+	
 	var dialogContainer = document.querySelector(".dialog-backdrop");
 	
 	var outputTitle = 'Dialog';
@@ -142,11 +196,11 @@ function showDialog(title, contentHtml, footerHtml, onRenderCallback) {
 	dialog.querySelector(".dialog-content").innerHTML = outputContentHtml;
 	dialog.querySelector(".dialog-footer").innerHTML = outputFooterHtml;
 	
-	var closeButtons = dialog.getElementsByClassName("close-dialog-btn");
+    var closeButtons = dialog.getElementsByClassName("close-dialog-btn");
 	
 	for (var i = 0; i < closeButtons.length; i++) {
 		 closeButtons[i].addEventListener('click', hideDialog);
-	}
+    }
 	
 	dialogContainer.addEventListener('click', hideDialog);
 	dialog.addEventListener('click', function(e){e.stopPropagation();});
@@ -154,8 +208,9 @@ function showDialog(title, contentHtml, footerHtml, onRenderCallback) {
 	if (onRenderCallback) {
 		onRenderCallback();
 	}
-	
-	body.classList.add("dialog-visible");
+    
+    body.classList.add("dialog-visible");
+    dialog.classList.remove("dialog-hidden");
 }
 
 loadCart();
@@ -164,4 +219,8 @@ var openCartButtons = document.getElementsByClassName("show-cart-btn");
 	
 for (var i = 0; i < openCartButtons.length; i++) {
     openCartButtons[i].addEventListener('click', showCartDialog);
+    var cartCounter = document.createElement("span");
+    cartCounter.innerText = getTotalItemsInCart();
+    cartCounter.classList.add("cart-counter");
+    openCartButtons[i].appendChild(cartCounter);
 }

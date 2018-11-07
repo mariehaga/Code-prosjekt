@@ -1,10 +1,3 @@
-function storeCart() {
-	// stores cart to cookie
-	var cartString = JSON.stringify(cart);
-	console.log(cartString);
-	document.cookie = "cart="+btoa(cartString)+";";
-}
-
 function addToCart(item, count) {
     console.log(item);
     console.log(item.id);
@@ -13,8 +6,6 @@ function addToCart(item, count) {
 }
 
 function setCartItemCount(itemId, count) {
-    console.log(itemId);
-    console.log(count);
 	var item = getItemData(itemId, products);
 	if (item) {
 		if (count > 0) {
@@ -37,5 +28,6 @@ function setCartItemCount(itemId, count) {
                 cart.splice(cart.indexOf(existingItem), 1);
             }
         }
+        updateCartCounter();
 	}
 }

@@ -389,6 +389,17 @@ nav a:hover {
 	}
 }
 
+/* cart styles */
+.cart-counter {
+    font-size: 0.75em;
+    padding: 0.1em 0.3em;
+    vertical-align: 0.1em;
+    margin-left: 0.25em;
+    background: #FF715B;
+    color: #FFF;
+    border-radius: 0.3em;;
+}
+
 /* dialog styles */
 .dialog-backdrop,
 .dialog {
@@ -421,13 +432,19 @@ nav a:hover {
 	background: rgba(0,0,0,0.5);
 }
 
+.dialog.dialog-hidden {
+    opacity: 0;
+}
+
 .dialog {
 	margin: 0 auto;
 	position: relative;
 	width: 80%;
 	max-width: 800px;
 	box-sizing: border-box;
-	margin-top: 1em;	
+    margin-top: 1em;
+    opacity: 1;
+    transition: opacity 0.5s ease;	
 }
 
 .dialog-header .close-dialog-btn {
