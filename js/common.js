@@ -66,10 +66,13 @@ function getCookie(key) {
 
 function loadCart() {
 	// loads cart from stored cookie
-	var cartString = atob(getCookie("cart"));
-	console.log("Cart cookie: " + cartString);
-	if (cartString) {
-		cart = JSON.parse(cartString);
+	var cartCookie = getCookie("cart");
+	if (cartCookie) {
+		var cartString = atob(getCookie("cart"));
+		console.log("Cart cookie: " + cartString);
+		if (cartString) {
+			cart = JSON.parse(cartString);
+		}
 	}
 }
 
