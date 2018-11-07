@@ -4,35 +4,35 @@ const products = [
 		name: "A thing",
 		price: 900,
 		img: "strawberry-banana.jpg",
-		category: "smouthie"
+		category: "Smoothie"
 	},
 	{
 		id: 2,
 		name: "Another thing",
 		price: 900,
 		img: "strawberry-banana.jpg",
-		category: "smouthie"
+		category: "Smoothie"
 	},
 	{
 		id: 3,
 		name: "A thing",
 		price: 900,
 		img: "strawberry-banana.jpg",
-		category: "smouthie"
+		category: "Smoothie"
 	},
 	{
 		id: 4,
 		name: "Another thing IIIIIIASSIIIIdsasdad",
 		price: 900,
 		img: "strawberry-banana.jpg",
-		category: "smouthie"
+		category: "Smoothie"
 	},
 	{
 		id: 5,
 		name: "A thing",
 		price: 900,
 		img: "nice-bread.png",
-		category: "bread"
+		category: "Bread"
 	}
 ];
 
