@@ -92,8 +92,10 @@ function updateCartCounter() {
 }
 
 function emptyCart() {
-    cart = [];
-    renderCart();
+	cart = [];
+	if (document.querySelector(".dialog-visible .cart")) {
+		renderCart();
+	}
     storeCart();
     updateCartCounter();
 }
@@ -145,9 +147,13 @@ function renderCart() {
     }
 
     for (var i = 0; i < emptyCartButtons.length; i++) {
-        checkoutButtons[i].removeEventListener('click', emptyCart);
-        emptyCartButtons[i].addEventListener('click', emptyCart);
+        emptyCartButtons[i].removeEventListener('click', showEmptyCartDialog);
+        emptyCartButtons[i].addEventListener('click', showEmptyCartDialog);
     }
+}
+
+function showEmptyCartDialog() {
+	showDialog("Confirm", '<p>Are you sure you wish to empty your cart?</p>', '<button onclick="emptyCart();hideDialog();">Yes, empty my cart</button><button class="close-dialog-btn">Cancel</button>');
 }
 
 function showCartDialog() {
