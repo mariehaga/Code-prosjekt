@@ -23,7 +23,7 @@
 }
 
 .element {
-	height: 150px;
+	height: 200px;
 	color: black;
 	width: 100%;
 }
@@ -31,7 +31,7 @@
 .textElements {
 	position: relative;
 	width: 100%;
-	height: 50px;
+	height: 70px;
 }
 
 .textField {
@@ -51,9 +51,7 @@
 
 .textElements > button {
 	position: absolute;
-	background-color: lightgrey;
-	width: 95%;
-	margin: 0px 2.5% 0px 2.5%;
+	width: 97.5%;
 	bottom: 0px;
 }
 

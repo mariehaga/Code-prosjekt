@@ -187,11 +187,11 @@ function renderCart() {
 
 function showEmptyCartDialog() {
 	/* ask the user to confirm that they want to empty their cart */
-	showDialog("Confirm", '<p>Are you sure you wish to empty your cart?</p>', '<button onclick="emptyCart();hideDialog();">Yes, empty my cart</button><button class="close-dialog-btn">Cancel</button>');
+	showDialog("Confirm", '<p>Are you sure you wish to empty your cart?</p>', '<button onclick="emptyCart();hideDialog();">Yes, empty my cart</button> <button class="close-dialog-btn">Cancel</button>');
 }
 
 function showCartDialog() {
-    showDialog("Cart", '<div class="cart"></div>', '<button class="checkout-btn">Checkout</button><button class="empty-cart-btn">Empty cart</button><button class="close-dialog-btn">Close</button>', renderCart);
+    showDialog("Cart", '<div class="cart"></div>', '<button class="checkout-btn">Checkout</button> <button class="empty-cart-btn">Empty cart</button> <button class="close-dialog-btn">Close</button>', renderCart);
 }
 
 function hideDialog() {

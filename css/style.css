@@ -52,14 +52,14 @@ body {
 /*About side*/
 /*Products side*/
 /*Contact side*/
-.contact-title{
+.contact-title {
     margin-top: 100px;
     color: #FF715B;
     text-transform: uppercase;
     transition: all 4s ease-in-out;
 }
 
-.contact-title h1,h2{
+.contact-title h1,h2 {
     text-align: center;
     margin: auto;
 }
@@ -85,21 +85,30 @@ form input {
     height: 45px;
 }
 
-form .submit {
+.contact-content form .submit {
+    font-size: 1.5em;
+    height: 50px;
+    margin-top: 20px;
+}
+
+form .submit,
+.button,
+button {
     background: #FFF;
     border-color: transparent;
     color: #FF715B;
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: bold;
     letter-spacing: 2px;
-    height: 50px;
-    margin-top: 20px;
+    height: 2em;
     text-align: center;
+    cursor: pointer;
 }
 
-form .submit:hover {
+form .submit:hover,
+.button:hover,
+button:hover {
     background-color: silver;
-    cursor: pointer;
 }
 
 .column {
@@ -448,9 +457,10 @@ nav a:hover {
 }
 
 .dialog-header .close-dialog-btn {
-	position: absolute;
-	top: 0.5em;
-	right: -0.5em;
+    position: absolute;
+    top: 0.25em;
+    right: -0.75em;
+    height: 1.75em;
 }
 
 .dialog-header h4 {
