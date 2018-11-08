@@ -3,6 +3,11 @@
 /* sets whether debug messages should be printed */
 const DEBUG_MODE = true;
 
+var customerInfo = {
+	name: "",
+	email: ""
+}
+
 /* 
 	images are licensed under creative commons.
 	names are (mostly) randomly generated. 
@@ -150,6 +155,15 @@ function getTotalItemsInCart() {
     return itemCount;
 }
 
+function getTotalItemCost() {
+	/* returns the total cost of items in the cart. */
+    var totalCost = 0;
+    for (var i = 0; i < cart.length; i++) {
+        totalCost += cart[i].count * getItemData(cart[i].id, products).price;
+    }
+    return totalCost;
+}
+
 function updateCartCounter() {
     var cartCounters = document.getElementsByClassName("cart-counter");
     for (var i = 0; i < cartCounters.length; i++) {
@@ -180,14 +194,33 @@ function checkoutCallback() {
 
 function checkoutRenderedCallback() {
 	renderCartSummary();
+	var orderNowButtons = document.querySelector(".dialog").getElementsByClassName("place-order-btn");
+
+    for (var i = 0; i < orderNowButtons.length; i++) {
+        orderNowButtons[i].removeEventListener('click', showCheckoutSuccessDialog);
+        orderNowButtons[i].addEventListener('click', showCheckoutSuccessDialog);
+    }
 }
 
 function showCheckoutSuccessDialog() {
-	return "";
+	/* check if form is valid - if not trigger form errors by clicking a button inside the form */
+	var form = document.querySelector(".dialog form");
+	if (!form.checkValidity()) {
+		const triggerButton = document.createElement('button')
+		form.appendChild(triggerButton)
+		triggerButton.click()
+		form.removeChild(triggerButton)
+		return;
+	}
+
+	customerInfo.name = document.querySelector('input[name="first-name"]').value;
+	customerInfo.email = document.querySelector('input[name="email"]').value;
+	emptyCart();
+	showDialog("Checkout", '<div class="checkout"><p>Your order has been placed, ' + customerInfo.name + '!</p><p>A receipt has been sent to ' + customerInfo.email + ', and we\'ll send you another email when your order ships.</p></div>', '');
 }
 
 function showCheckoutDialog() {
-    showDialog("Checkout", '<div class="checkout"><p>Checkout?</p></div>', "", checkoutCallback);
+    showDialog("Checkout", '<div class="checkout"><p>Checkout?</p></div>', '<button class="place-order-btn">Place Order</button> <button class="close-dialog-btn">Cancel</button>', checkoutCallback);
 }
 
 function getCartItemCount(itemId) {
@@ -225,6 +258,11 @@ function renderCartSummary() {
 			li.innerText = itemData.name + " (" + cart[i].count + ")";
 			list.appendChild(li);
 		}
+
+		var sumElement = document.createElement("p");
+		sumElement.classList.add("text-center");
+		sumElement.innerText = "Cost: " + getTotalItemCost() + " NOK";
+		cart_container.appendChild(sumElement);
     }
     
 	console.log("Attempted to render cart summary, current cart: " + JSON.stringify(cart));
@@ -256,8 +294,17 @@ function renderCart() {
     var emptyCartButtons = dialog.getElementsByClassName("empty-cart-btn");
 
     for (var i = 0; i < checkoutButtons.length; i++) {
-        checkoutButtons[i].removeEventListener('click', showCheckoutDialog);
-        checkoutButtons[i].addEventListener('click', showCheckoutDialog);
+		checkoutButtons[i].removeEventListener('click', showCheckoutDialog);
+		checkoutButtons[i].classList.add("disabled");
+		checkoutButtons[i].disabled = true;
+		checkoutButtons[i].title = "You need to have some items in your cart before you can check out.";
+
+		if (getTotalItemsInCart() > 0) {
+			checkoutButtons[i].addEventListener('click', showCheckoutDialog);
+			checkoutButtons[i].classList.remove("disabled");
+			checkoutButtons[i].disabled = false;
+			checkoutButtons[i].title = "";
+		}
     }
 
     for (var i = 0; i < emptyCartButtons.length; i++) {
