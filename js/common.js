@@ -309,7 +309,12 @@ function renderCart() {
 
     for (var i = 0; i < emptyCartButtons.length; i++) {
         emptyCartButtons[i].removeEventListener('click', showEmptyCartDialog);
-        emptyCartButtons[i].addEventListener('click', showEmptyCartDialog);
+		emptyCartButtons[i].classList.add("hidden");
+		
+		if (getTotalItemsInCart() > 0) {
+			emptyCartButtons[i].addEventListener('click', showEmptyCartDialog);
+			emptyCartButtons[i].classList.remove("hidden");
+		}
 	}
 	
 	console.log("Attempted to render cart, current cart: " + JSON.stringify(cart));
