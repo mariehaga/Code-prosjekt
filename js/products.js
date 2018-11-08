@@ -136,8 +136,6 @@ bindAddToCart = function (button, product, input) {
 	button.onclick = function () {
 
 		if (input.value > 0) {
-			console.log(input.value);
-
 			addToCart(product, input.value);
 
 			//Reset input-value
@@ -145,7 +143,7 @@ bindAddToCart = function (button, product, input) {
 			input.placeholder = 1;
 		}
 		else {
-			console.log("no value");
+			console.log("no input value");
 		}
 	}
 }

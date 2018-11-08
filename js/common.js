@@ -63,7 +63,7 @@ const products = [
 /****** HELPER FUNCTIONS AND CODE ******/
 
 if (DEBUG_MODE) {
-	/* code to run during debug mode goes here */
+	/* code to run in debug mode goes here */
 } else {
 	/* overwrite console.log with empty function to suppress output */
 	console.log = function(){};
@@ -125,7 +125,7 @@ var cart = [];
 function storeCart() {
 	/* stores cart to cookie */
 	var cartString = JSON.stringify(cart);
-	console.log(cartString);
+	console.log("Current cart stored to cookie: " + cartString);
 	document.cookie = "cart="+btoa(cartString)+";";
 }
 
@@ -134,7 +134,7 @@ function loadCart() {
 	var cartCookie = getCookie("cart");
 	if (cartCookie) {
 		var cartString = atob(getCookie("cart"));
-		console.log("Cart cookie: " + cartString);
+		console.log("Loaded cart cookie: " + cartString);
 		if (cartString) {
 			cart = JSON.parse(cartString);
 		}
@@ -208,11 +208,14 @@ function renderCart() {
 	/* renders cart from cart variable */
 	const cart_container = document.querySelector(".cart");
 	cart_container.innerHTML = "<p>Your cart is empty.</p>";
+
+	/* set up cart DOM contents */
 	if (cart.length > 0) {
 		const list = document.createElement("ul");
 		cart_container.innerHTML = "";
 		cart_container.appendChild(list);
 		for (i = 0; i < cart.length; i++) {
+			/* add each cart item */
 			const li = document.createElement("li");
 			const itemData = getItemData(cart[i].id, products);
 			li.innerText = itemData.name + " (" + cart[i].count + ")";
@@ -222,6 +225,7 @@ function renderCart() {
     
     var dialog = document.querySelector(".dialog");
 
+	/* bind cart button listeners */
     var checkoutButtons = dialog.getElementsByClassName("checkout-btn");
     var emptyCartButtons = dialog.getElementsByClassName("empty-cart-btn");
 
@@ -233,7 +237,9 @@ function renderCart() {
     for (var i = 0; i < emptyCartButtons.length; i++) {
         emptyCartButtons[i].removeEventListener('click', showEmptyCartDialog);
         emptyCartButtons[i].addEventListener('click', showEmptyCartDialog);
-    }
+	}
+	
+	console.log("Attempted to render cart, current cart: " + JSON.stringify(cart));
 }
 
 function showEmptyCartDialog() {
@@ -259,6 +265,7 @@ const dialogTemplateHtml = '' +
 
 function hideDialog() {
 	document.querySelector("body").classList.remove("dialog-visible");
+	console.log("Attempted to hide dialog");
 }
 
 function showDialog(title, contentHtml, footerHtml, onRenderCallback) {
@@ -272,6 +279,7 @@ function showDialog(title, contentHtml, footerHtml, onRenderCallback) {
 
     var body = document.querySelector("body");
 
+	/* create dialog container if it doesn't exist */
     if (!document.querySelector(".dialog-backdrop")) {
         var dialogContainer = document.createElement("div");
 		dialogContainer.className = "dialog-backdrop";
@@ -280,9 +288,10 @@ function showDialog(title, contentHtml, footerHtml, onRenderCallback) {
 	}
 	
 	var dialog = document.querySelector(".dialog");
-    
+	
+	/* check if we already have an open dialog */
     if (body.classList.contains("dialog-visible") && !dialog.classList.contains("dialog-hidden")) {
-        /* hide current dialog, open new one after a timeout */
+        /* hide current dialog, open new one after a delay to give it time to close */
         dialog.classList.add("dialog-hidden");
         setTimeout(function(){ showDialog(title, contentHtml, footerHtml, onRenderCallback); }, 500);
         return;
@@ -290,6 +299,7 @@ function showDialog(title, contentHtml, footerHtml, onRenderCallback) {
 	
 	var dialogContainer = document.querySelector(".dialog-backdrop");
 	
+	/* set up dialog contents */
 	var outputTitle = 'Dialog';
 	var outputContentHtml = '<p>No content specified</p>';
 	var outputFooterHtml = '<button class="close-dialog-btn">Close</button>';
@@ -310,6 +320,7 @@ function showDialog(title, contentHtml, footerHtml, onRenderCallback) {
 	dialog.querySelector(".dialog-content").innerHTML = outputContentHtml;
 	dialog.querySelector(".dialog-footer").innerHTML = outputFooterHtml;
 	
+	/* bind button event listeners */
     var closeButtons = dialog.getElementsByClassName("close-dialog-btn");
 	
 	for (var i = 0; i < closeButtons.length; i++) {
@@ -319,12 +330,15 @@ function showDialog(title, contentHtml, footerHtml, onRenderCallback) {
 	dialogContainer.addEventListener('click', hideDialog);
 	dialog.addEventListener('click', function(e){e.stopPropagation();});
 	
+	/* run callback function if set */
 	if (onRenderCallback) {
 		onRenderCallback();
 	}
-    
+	
+	/* show dialog */
     body.classList.add("dialog-visible");
-    dialog.classList.remove("dialog-hidden");
+	dialog.classList.remove("dialog-hidden");
+	console.log("Attempted to show dialog with title " + outputTitle);
 }
 
 /****** CODE TO RUN ON PAGE LOAD ******/
