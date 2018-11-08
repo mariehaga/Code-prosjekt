@@ -115,7 +115,7 @@ function renderFinishedCallback() {
 			cartCounter.classList.add("cart-counter");
 			openCartButtons[i].appendChild(cartCounter);
 		}
-	}	
+	}
 }
 
 /****** CART-RELATED CODE ******/
@@ -174,8 +174,12 @@ function emptyCart() {
     updateCartCounter();
 }
 
-function renderCheckoutToString() {
-	return "";
+function checkoutCallback() {
+	renderFileToContainer("shared-html/checkout.html", ".checkout", checkoutRenderedCallback);
+}
+
+function checkoutRenderedCallback() {
+	return;
 }
 
 function showCheckoutSuccessDialog() {
@@ -183,7 +187,7 @@ function showCheckoutSuccessDialog() {
 }
 
 function showCheckoutDialog() {
-    showDialog("Checkout", '<p>Checkout?</p>');
+    showDialog("Checkout", '<div class="checkout"><p>Checkout?</p></div>', "", checkoutCallback);
 }
 
 function getCartItemCount(itemId) {
