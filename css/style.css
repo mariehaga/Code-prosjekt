@@ -406,7 +406,12 @@ nav a:hover {
     margin-left: 0.25em;
     background: #FF715B;
     color: #FFF;
-    border-radius: 0.3em;;
+    border-radius: 0.3em;
+    transition: background 0.2s ease;
+}
+
+.cart-counter.counter-updated {
+    background: silver;
 }
 
 /* dialog styles */

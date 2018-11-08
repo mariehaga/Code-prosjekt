@@ -109,7 +109,14 @@ function getTotalItemsInCart() {
 function updateCartCounter() {
     var cartCounters = document.getElementsByClassName("cart-counter");
     for (var i = 0; i < cartCounters.length; i++) {
-        cartCounters[i].innerText = getTotalItemsInCart();
+		var cartCounter = cartCounters[i];
+		cartCounter.innerText = getTotalItemsInCart();
+		cartCounter.classList.add("counter-updated");
+		(function(counter) {
+			setTimeout(function(){
+				counter.classList.remove("counter-updated");
+			}, 200);
+		})(cartCounter);
     }
 }
 
