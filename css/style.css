@@ -85,6 +85,15 @@ form input {
     height: 45px;
 }
 
+.text-center {
+    text-align: center;
+}
+
+.cart-summary { 
+    width: 75%;
+    margin: 0 auto;
+}
+
 .contact-content form .submit {
     font-size: 1.5em;
     height: 50px;
@@ -103,6 +112,13 @@ button {
     height: 2em;
     text-align: center;
     cursor: pointer;
+}
+
+button.disabled,
+.button.disabled {
+    background: silver;
+    color: #EFEFEF;
+    cursor: not-allowed;
 }
 
 form .submit:hover,
