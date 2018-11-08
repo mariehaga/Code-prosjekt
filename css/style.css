@@ -103,7 +103,8 @@ form input {
 
 form .submit,
 .button,
-button {
+button,
+input[type="checkbox"] + label {
     background: #FFF;
     border-color: transparent;
     color: #FF715B;
@@ -112,6 +113,21 @@ button {
     height: 2em;
     text-align: center;
     cursor: pointer;
+}
+
+#filterList li {
+    display: inline-block;
+    margin: 0.25em;
+}
+
+#filterList {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+input[type="checkbox"] + label {
+    padding: 0.5em;
 }
 
 button.disabled,
@@ -123,8 +139,23 @@ button.disabled,
 
 form .submit:hover,
 .button:hover,
-button:hover {
+button:hover,
+input[type="checkbox"] + label:hover {
     background-color: silver;
+}
+
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label {
+    user-select: none;
+}
+
+input[type="checkbox"]:checked + label {
+    background: #FF715B;
+    color: white;
 }
 
 .row > * {
@@ -330,6 +361,7 @@ nav a:hover {
 textarea {
     width: 100%;
     resize: vertical; 
+    min-height: 5em;
 }
 
 .dialog .dialog-content h4 {
