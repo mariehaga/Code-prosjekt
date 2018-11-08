@@ -99,10 +99,9 @@ displayProducts = function (products) {
 
 		var picture = document.createElement("img");
 		picture.src = "img/" + products[i].img;
-		picture.alt = "Picture of " + products[i];
+		picture.alt = "Picture of " + products[i].name;
 
 		element.appendChild(picture);
-
 
 		var textField = document.createElement("span");
 		textField.className = "textField";

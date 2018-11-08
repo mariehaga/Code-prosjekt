@@ -115,7 +115,7 @@ function renderFinishedCallback() {
 			cartCounter.classList.add("cart-counter");
 			openCartButtons[i].appendChild(cartCounter);
 		}
-	}	
+	}
 }
 
 /****** CART-RELATED CODE ******/
@@ -174,8 +174,12 @@ function emptyCart() {
     updateCartCounter();
 }
 
-function renderCheckoutToString() {
-	return "";
+function checkoutCallback() {
+	renderFileToContainer("shared-html/checkout.html", ".checkout", checkoutRenderedCallback);
+}
+
+function checkoutRenderedCallback() {
+	renderCartSummary();
 }
 
 function showCheckoutSuccessDialog() {
@@ -183,7 +187,7 @@ function showCheckoutSuccessDialog() {
 }
 
 function showCheckoutDialog() {
-    showDialog("Checkout", '<p>Checkout?</p>');
+    showDialog("Checkout", '<div class="checkout"><p>Checkout?</p></div>', "", checkoutCallback);
 }
 
 function getCartItemCount(itemId) {
@@ -202,6 +206,28 @@ function getItemData(itemId, target) {
 		return item[0];
 	}
 	return false;
+}
+
+function renderCartSummary() {
+	/* renders cart from cart variable */
+	const cart_container = document.querySelector(".cart-summary");
+	cart_container.innerHTML = "<p>Your cart is empty.</p>";
+
+	/* set up cart DOM contents */
+	if (cart.length > 0) {
+		const list = document.createElement("ul");
+		cart_container.innerHTML = "";
+		cart_container.appendChild(list);
+		for (i = 0; i < cart.length; i++) {
+			/* add each cart item */
+			const li = document.createElement("li");
+			const itemData = getItemData(cart[i].id, products);
+			li.innerText = itemData.name + " (" + cart[i].count + ")";
+			list.appendChild(li);
+		}
+    }
+    
+	console.log("Attempted to render cart summary, current cart: " + JSON.stringify(cart));
 }
 
 function renderCart() {

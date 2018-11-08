@@ -71,7 +71,7 @@ form {
 }
 
  .form-control {
-    width: 75%;
+    width: 100%;
     background: transparent;
     border: none;
     outline: none;
@@ -111,12 +111,28 @@ button:hover {
     background-color: silver;
 }
 
-.column {
-    float: left;
-    width: 38%;
-    margin-left: 7%;
-    padding: 8px;
+.row > * {
+	float: left;
+}
 
+.row > .col-50p {
+	width: 50%;
+}
+
+.row > .col-33p {
+	width: 33.333333333%;
+}
+
+.row > .col-25p {
+	width: 25%;
+}
+
+@media only screen and (max-width: 50em) {
+	.row > .col-50p,
+	.row > .col-33p,
+	.row > .col-25p {
+		width: 100%;
+	}
 }
 
 .row:after {
@@ -132,8 +148,6 @@ form ul {
 }
 
 /*Shopping Cart side*/
-
-
 
 /* navigation styles starter her */
 
@@ -297,6 +311,19 @@ nav a:hover {
     margin: auto;
 }
 
+textarea {
+    width: 100%;
+    resize: vertical; 
+}
+
+.dialog .dialog-content h4 {
+    text-align: center;
+}
+
+.dialog h4:first-child {
+    margin-top: 0;
+}
+
 .footer-divide .footer-right a {
 	display: inline-block;
 	width: 35px;
@@ -309,7 +336,6 @@ nav a:hover {
 	line-height: 35px;
 	margin-left: 3px;
 }
-
 
 /* Media - desktop */
 
@@ -438,7 +464,9 @@ nav a:hover {
 	z-index: 9999;
 	transition: opacity 0.25s ease, background 0.25s ease;
 	opacity: 0;
-	background: rgba(0,0,0,0.0);
+    background: rgba(0,0,0,0.0);
+    overflow: auto;
+    padding-bottom: 1em;
 }
 
 .dialog-visible .dialog-backdrop {
