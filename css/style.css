@@ -89,6 +89,7 @@ form input {
     font-size: 1.5em;
     height: 50px;
     margin-top: 20px;
+    letter-spacing: 2px;
 }
 
 form .submit,
@@ -99,7 +100,6 @@ button {
     color: #FF715B;
     font-size: 1em;
     font-weight: bold;
-    letter-spacing: 2px;
     height: 2em;
     text-align: center;
     cursor: pointer;
