@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,83 +10,48 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body class="Home">
-
         <!-- header -->
-            <header>
-                <h1 class="logo">Grossist AS</h1>
-                <input type="checkbox" id="nav-toggle" class="nav-toggle">
-                    <nav>
-                        <ul>
-                            <li><a href="./">Home</a></li>
-                            <li><a href="./about.html">About</a></li>
-                            <li><a href="./products.html">Products</a></li>
-                            <li><a href="#" class="show-cart-btn">Cart</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
-                        </ul>
-                        <div class="clear"> </div>
-                    </nav>
-                <label for="nav-toggle" class="nav-toggle-label">
-                    <span></span>
-                </label>
-                <div class="clear"> </div>
-            </header>
+        <header>
+            <!-- loaded with js from /shared-html/header.html -->
+        </header>
 
+        <!-- content -->
+        <div class="contact-content">
+            <div class="contact-left">
 
-    <!-- content -->
-            <div class="contact-content">
-                <div class="contact-left">
-
-                </div>
-                <div class="contact-right">
-                        <div class="contact-title">
-                            <h1>Si hei!</h1>
-                            <h2>Vi ønsker å høre ifra <i>deg</i>!</h2>
-                        </div>
-                        <div class="contact-form">
-        <!---------------------foms blir sendt igjennom side til egen mail-------------------------->
-                        <aside>
-                            <form id="contact-form" method="post" action="https://formspree.io/Gruppe41web@gmail.com">
-                                <ul>
-                                        <div class="row">
-                                            <div class="column">
-                                                <li><input name="first-name" type="text" class="form-control" placeholder="First name" required><br></li>
-                                            </div>
-                                            <div class="column">
-                                                <li><input name="last-name" type="text" class="form-control" placeholder="Last name" required><br></li>
-                                            </div>
+            </div>
+            <div class="contact-right">
+                    <div class="contact-title">
+                        <h1>Si hei!</h1>
+                        <h2>Vi ønsker å høre ifra <i>deg</i>!</h2>
+                    </div>
+                    <div class="contact-form">
+                    <!-- forms blir sendt igjennom side til egen mail -->
+                    <aside>
+                        <form id="contact-form" method="post" action="https://formspree.io/Gruppe41web@gmail.com">
+                            <ul>
+                                    <div class="row">
+                                        <div class="column">
+                                            <li><input name="first-name" type="text" class="form-control" placeholder="First name" required><br></li>
                                         </div>
+                                        <div class="column">
+                                            <li><input name="last-name" type="text" class="form-control" placeholder="Last name" required><br></li>
+                                        </div>
+                                    </div>
 
-                                                <li><input name="email" type="email" class="form-control" placeholder="Your email adress" required><br></li>
-                                                <li><textarea name="message"  class="form-control" placeholder="Message" required></textarea> <br></li>
-                                                <li><input type="submit" class="form-control submit" value="SEND MESSAGE"><br></li>
-                                    </ul>
-                            </form>
-                        </aside>
-                        </div>
-                </div>
+                                            <li><input name="email" type="email" class="form-control" placeholder="Your email adress" required><br></li>
+                                            <li><textarea name="message"  class="form-control" placeholder="Message" required></textarea> <br></li>
+                                            <li><input type="submit" class="form-control submit" value="SEND MESSAGE"><br></li>
+                                </ul>
+                        </form>
+                    </aside>
+                    </div>
             </div>
-    <!-- footer -->
+        </div>
+
+        <!-- footer -->
         <footer class="footer-divide">
-            <div class="footer-right">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-youtube"></i></a>
-                <a href="#"><i class="fa fa-envelope"></i></a>
-            </div>
-            <div class="footer-left">
-                <p class="footer-links">
-                    <a href="./">Home</a>
-                    ·
-                    <a href="./about.html">About</a>
-                    ·
-                    <a href="./products.html">Products</a>
-                    ·
-                    <a href="#" class="show-cart-btn">Cart</a>
-                    ·
-                    <a href="./contact.html">Contact</a>
-                </p>
-                <p>Grossist AS &copy; 2018</p>
-            </div>
+            <!-- loaded with js from /shared-html/footer.html -->
         </footer>
         <script src="js/common.js"></script>
     </body>
