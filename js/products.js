@@ -103,7 +103,6 @@ displayProducts = function (products) {
 
 		element.appendChild(picture);
 
-
 		var textField = document.createElement("span");
 		textField.className = "textField";
 		textField.innerHTML = products[i].name + ", " + products[i].price + " NOK: " ;
