@@ -1,3 +1,8 @@
+/****** SETTINGS AND CONSTANTS ******/
+
+/* sets whether debug messages should be printed */
+const DEBUG_MODE = true;
+
 /* 
 	images are licensed under creative commons.
 	names are (mostly) randomly generated. 
@@ -55,22 +60,13 @@ const products = [
 	}
 ];
 
-const dialogTemplateHtml = '' +
-    '<div class="dialog">' +
-        '<div class="dialog-header"><h4 class="dialog-title"></h4><button class="close-dialog-btn">x</button></div>' +
-        '<div class="dialog-content">' +
-            '<p>test</p>' +
-        '</div>' +
-        '<div class="dialog-footer"></div>' +
-    '</div>';
+/****** HELPER FUNCTIONS AND CODE ******/
 
-var cart = [];
-
-function storeCart() {
-	/* stores cart to cookie */
-	var cartString = JSON.stringify(cart);
-	console.log(cartString);
-	document.cookie = "cart="+btoa(cartString)+";";
+if (DEBUG_MODE) {
+	/* code to run during debug mode goes here */
+} else {
+	/* overwrite console.log with empty function to suppress output */
+	console.log = function(){};
 }
 
 function getCookie(key) {
@@ -83,6 +79,54 @@ function getCookie(key) {
 	if (parts.length == 2) {
 		return parts.pop().split(";").shift();;
 	}
+}
+
+function renderFileToContainer(url, containerSelector, callback) {
+	/*
+		gets the contents of the .html file at the specified url,
+		and puts it in the container specified by the CSS selector
+		containerSelector. the callback function is run after that
+		is done. an usage example is at the bottom of this file.
+	*/
+
+	fetch("./"+url).then(function (response) {
+		return response.text();
+	}).then(function (html) {
+		document.querySelector(containerSelector).innerHTML = html;
+		if (callback) {
+			callback();
+		}
+	});
+}
+
+function renderFinishedCallback() {
+	/* code that we want to run after the header/footer has finished loading goes here */
+
+	/* bind cart button onclick to open cart, add cart item counters */
+	var openCartButtons = document.getElementsByClassName("show-cart-btn");
+	
+	for (var i = 0; i < openCartButtons.length; i++) {
+		openCartButtons[i].addEventListener('click', showCartDialog);
+
+		/* check whether button already has a cart item counter, add one if not */
+		if (!openCartButtons[i].querySelector(".cart-counter")) {
+			var cartCounter = document.createElement("span");
+			cartCounter.innerText = getTotalItemsInCart();
+			cartCounter.classList.add("cart-counter");
+			openCartButtons[i].appendChild(cartCounter);
+		}
+	}	
+}
+
+/****** CART-RELATED CODE ******/
+
+var cart = [];
+
+function storeCart() {
+	/* stores cart to cookie */
+	var cartString = JSON.stringify(cart);
+	console.log(cartString);
+	document.cookie = "cart="+btoa(cartString)+";";
 }
 
 function loadCart() {
@@ -201,6 +245,18 @@ function showCartDialog() {
     showDialog("Cart", '<div class="cart"></div>', '<button class="checkout-btn">Checkout</button> <button class="empty-cart-btn">Empty cart</button> <button class="close-dialog-btn">Close</button>', renderCart);
 }
 
+/****** DIALOG-RELATED CODE ******/
+
+/* default template used for rendering the dialog window */
+const dialogTemplateHtml = '' +
+    '<div class="dialog">' +
+        '<div class="dialog-header"><h4 class="dialog-title"></h4><button class="close-dialog-btn">x</button></div>' +
+        '<div class="dialog-content">' +
+            '<p>test</p>' +
+        '</div>' +
+        '<div class="dialog-footer"></div>' +
+    '</div>';
+
 function hideDialog() {
 	document.querySelector("body").classList.remove("dialog-visible");
 }
@@ -271,42 +327,7 @@ function showDialog(title, contentHtml, footerHtml, onRenderCallback) {
     dialog.classList.remove("dialog-hidden");
 }
 
-function renderFileToContainer(url, containerSelector, callback) {
-	/*
-		gets the contents of the .html file at the specified url,
-		and puts it in the container specified by the CSS selector
-		containerSelector. the callback function is run after that
-		is done. an usage example is at the bottom of this file.
-	*/
-
-	fetch("./"+url).then(function (response) {
-		return response.text();
-	}).then(function (html) {
-		document.querySelector(containerSelector).innerHTML = html;
-		if (callback) {
-			callback();
-		}
-	});
-}
-
-function renderFinishedCallback() {
-	/* code that we want to run after the header/footer has finished loading goes here */
-
-	/* bind cart button onclick to open cart, add cart item counters */
-	var openCartButtons = document.getElementsByClassName("show-cart-btn");
-	
-	for (var i = 0; i < openCartButtons.length; i++) {
-		openCartButtons[i].addEventListener('click', showCartDialog);
-
-		/* check whether button already has a cart item counter, add one if not */
-		if (!openCartButtons[i].querySelector(".cart-counter")) {
-			var cartCounter = document.createElement("span");
-			cartCounter.innerText = getTotalItemsInCart();
-			cartCounter.classList.add("cart-counter");
-			openCartButtons[i].appendChild(cartCounter);
-		}
-	}	
-}
+/****** CODE TO RUN ON PAGE LOAD ******/
 
 loadCart();
 
